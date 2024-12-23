@@ -46,7 +46,7 @@ LMS Calculator Application — это серверное приложение н
 ```
 
 # Примеры запросов:
-1.Запрос
+1.Запрос(код 200)
 ```
 curl -X POST http://localhost:8080/api/v1/calculate \
 -H "Content-Type: application/json" \
@@ -59,7 +59,7 @@ curl -X POST http://localhost:8080/api/v1/calculate \
 }
 ```
 
-2.Запрос
+2.Запрос(код 422)
 ```
 curl -X POST http://localhost:8080/api/v1/calculate \
 -H "Content-Type: application/json" \
@@ -72,7 +72,7 @@ curl -X POST http://localhost:8080/api/v1/calculate \
 }
 ```
 
-3.Запрос
+3.Запрос(код 422)
 ```
 curl -X POST http://localhost:8080/api/v1/calculate \
 -H "Content-Type: application/json" \
@@ -85,7 +85,7 @@ curl -X POST http://localhost:8080/api/v1/calculate \
 }
 ```
 
-4.Запрос
+4.Запрос(код 405)
 ```
 curl -X GET http://localhost:8080/api/v1/calculate
 ```
@@ -93,6 +93,18 @@ curl -X GET http://localhost:8080/api/v1/calculate
 ```
 {
 "error": "Only POST method is allowed"
+}
+```
+5.Запрос(код 500)
+```
+curl -X POST http://localhost:8080/api/v1/calculate \
+-H "Content-Type: application/json" \
+-d '{"expression":"1 / 0"}'
+```
+Ответ:
+```
+{
+  "error": "Internal server error"
 }
 ```
 
