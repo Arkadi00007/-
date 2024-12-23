@@ -81,9 +81,7 @@ func Calc(expression string) (float64, error) {
 		}
 
 		if IsDigit(expression[i]) {
-			if isOperator(beforeV) {
-				return 0, fmt.Errorf("incorrect expression")
-			}
+			
 			for i < len(expression) && IsDigit(expression[i]) {
 				num *= 10
 				num += float64(expression[i] - '0')
@@ -93,6 +91,9 @@ func Calc(expression string) (float64, error) {
 			i--
 			stack = append(stack, num)
 		} else if isOperator(v) {
+			if isOperator(beforeV) {
+				return 0, fmt.Errorf("incorrect expression")
+			}
 			for j := len(stackForOperators) - 1; j >= 0; j-- {
 				if precedence(v) > precedence(stackForOperators[j]) {
 					break
